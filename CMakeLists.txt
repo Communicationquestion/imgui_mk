@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+project(imgui_mk LANGUAGES CXX)
+
+if (MSVC)
+    add_compile_options(/Zc:preprocessor /utf-8 /DNOMINMAX /D_USE_MATH_DEFINES /EHsc /bigobj)
+else()
+    if (WIN32)
+        add_compile_options(-finput-charset=utf-8 -fexec-charset=utf-8)
+    endif()
+    add_compile_options(-Wall -Wextra -Werror=return-type)
+endif()
+
+add_subdirectory(imgui_mk)
+add_subdirectory(imgui)
+add_subdirectory(glad)
